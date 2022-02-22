@@ -1,16 +1,44 @@
 <?php 
 require_once "inc/init.inc.php";
 //------------------------------------- TRAITEMENT PHP ------------------------------------//
-
-
-
-
-
-
-
+if(isset($_GET['action']) && $_GET['action'] == "deconnexion")
+{
+    session_destroy();
+}
+if(internauteEstConnecte())
+{
+    header("location:profil.php");
+}
+if($_POST)
+{
+    $resultat = executeRequete("SELECT * FROM membre WHERE pseudo ='$_POST[pseudo]' ");
+    if($resultat->num_rows != 0)
+    {
+        $membre = $resultat->fetch_assoc();
+        if(password_verify($_POST['mdp'], $membre['mdp']))
+        {
+            foreach($membre AS $indice => $element)
+            {
+                if($indice != 'mdp')
+                {
+                    $_SESSION['membre'][$indice] = $element;
+                }
+            }
+            header("location:profil.php");
+        }
+        else
+        {
+            $contenu .= "<div class='alert alert-danger'>❌ Identifiants invalide !</div>";
+        }
+    }
+    else
+    {
+        $contenu .= "<div class='alert alert-danger'>❌ Identifiants invalide !</div>";
+    }
+}
 //------------------------------------- AFFICHAGE HTML ------------------------------------//
 require_once "inc/haut.inc.php";
-
+echo $contenu;
 ?>
 <div class="jumbotron text-center mt-4">
     <h2>Connexion</h2>
