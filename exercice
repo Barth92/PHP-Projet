@@ -1,0 +1,22 @@
+
+
+
+        Développer un Blog (orienté objet)
+
+
+1. Choisir un thème (passion, sport, auto, manga ...)
+2. Créer une base de données
+3. Créer un dossier projet avec une architecture MVC
+4. Créer un router
+5. Créer une connexion entre votre PHP et votre BDD
+6. Développer vos différentes fonctionnalitées
+
+
+Partie Front
+7. Votre blog doit démarrer sur une HomePage regroupant l'ensemble de vos article
+8. Créer une page profil
+
+Partie Back
+9. Créer un CRUD complet protéger par un système de connexion.
+
+10. Traviller votre style.
